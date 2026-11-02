@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@theme {
+ /* ── AN'ZEE COLLECTION · Material Design 3 tonal palette ─────────────
+ Deep Burgundy base · Velvet Cream surfaces · Muted Dusty Pink secondary ·
+ Champagne Gold accents ─────────────────────────────────────────── */
+ --color-wine-950: #1c030a;
+ --color-wine-900: #26060c;
+ --color-wine-850: #2e0810;
+ --color-wine-800: #3a0d1a;
+ --color-wine-700: #4b1224;
+ --color-wine-600: #5f1b30;
+ --color-wine-500: #77253c;
+
+ --color-cream-50: #fdfaf6;
+ --color-cream-100: #fbf6ef;
+ --color-cream-200: #f3eae0;
+ --color-cream-300: #e8dacb;
+ --color-cream-400: #d8c7b6;
+ --color-cream-500: #b9a794;
+
+ --color-mauve-100: #e9cfd2;
+ --color-mauve-200: #d9b4b9;
+ --color-mauve-300: #c69ba2;
+ --color-mauve-400: #b07e88;
+ --color-mauve-500: #8f5f6b;
+ --color-mauve-700: #5e3a43;
+ --color-mauve-800: #40252d;
+
+ --color-gold-200: #f6e7be;
+ --color-gold-300: #edd391;
+ --color-gold-400: #e3c07b;
+ --color-gold-500: #c9a24b;
+ --color-gold-600: #a67c37;
+ --color-gold-700: #7d5a22;
+
+ --font-display: "Cinzel", ui-serif, Georgia, serif;
+ --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+ --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+ /* M3 elevation — tinted for dark burgundy surfaces */
+ --: 0 1px 2px rgba(0, 0, 0, 0.35), 0 1px 3px 1px rgba(0, 0, 0, 0.22);
+ --: 0 2px 6px rgba(0, 0, 0, 0.4), 0 2px 10px 2px rgba(0, 0, 0, 0.25);
+ --: 0 4px 14px rgba(0, 0, 0, 0.45), 0 6px 26px 4px rgba(0, 0, 0, 0.3);
+ --: 0 8px 28px rgba(0, 0, 0, 0.5), 0 12px 48px 6px rgba(0, 0, 0, 0.35);
+ --: 0 0 0 1px rgba(227, 192, 123, 0.35), 0 10px 38px rgba(227, 192, 123, 0.18);
+
+ --animate-marquee: marquee 36s linear infinite;
+ --animate-pulse-ring: pulse-ring 2.6s cubic-bezier(0.2, 0, 0, 1) infinite;
+ --animate-float-slow: float-slow 7s ease-in-out infinite;
+ --animate-shimmer: shimmer 2.8s linear infinite;
+
+ @keyframes marquee {
+ from { transform: translateX(0); }
+ to { transform: translateX(-50%); }
+ }
+ @keyframes pulse-ring {
+ 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
+ 70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+ 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+ }
+ @keyframes float-slow {
+ 0%, 100% { transform: translateY(0); }
+ 50% { transform: translateY(-12px); }
+ }
+ @keyframes shimmer {
+ from { background-position: -200% 0; }
+ to { background-position: 200% 0; }
+ }
+}
+
+html {
+ scroll-behavior: smooth;
+}
+
+body {
+ background: #1c030a;
+ color: #fbf6ef;
+ font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ text-rendering: optimizeLegibility;
+}
+
+/* Champagne gold gradient text (headline flourish) */
+.gold-text {
+ background: linear-gradient(118deg, #f6e7be 0%, #e3c07b 28%, #a67c37 52%, #edd391 74%, #f8ecc8 100%);
+ background-size: 200% 100%;
+ -webkit-background-clip: text;
+ background-clip: text;
+ color: transparent;
+ animation: shimmer 5.5s linear infinite;
+}
+
+/* Hairline gold rule with diamond center */
+.gold-rule {
+ display: flex;
+ align-items: center;
+ gap: 0.75rem;
+}
+.gold-rule::before,
+.gold-rule::after {
+ content: "";
+ height: 1px;
+ flex: 1;
+ background: linear-gradient(90deg, transparent, rgba(227, 192, 123, 0.65), transparent);
+}
+
+/* M3 state-layer surface — hover/focus overlays with 8% on-state alpha */
+.state-layer {
+ position: relative;
+ isolation: isolate;
+ overflow: hidden;
+}
+.state-layer::after {
+ content: "";
+ position: absolute;
+ inset: 0;
+ background: currentColor;
+ opacity: 0;
+ transition: opacity 180ms cubic-bezier(0.2, 0, 0, 1);
+ pointer-events: none;
+ z-index: -1;
+ border-radius: inherit;
+}
+.state-layer:hover::after { opacity: 0.08; }
+.state-layer:focus-visible::after { opacity: 0.12; }
+.state-layer:active::after { opacity: 0.12; }
+
+/* M3 focus ring — accessible champagne outline */
+.m3-focus:focus-visible {
+ outline: 2px solid #e3c07b;
+ outline-offset: 2px;
+ border-radius: 4px;
+}
+
+/* M3 outlined text field label notch helper */
+.field-label {
+ font-size: 0.5625rem;
+ font-weight: 700;
+ letter-spacing: 0.22em;
+ text-transform: uppercase;
+ color: #e3c07b;
+}
+.field-input {
+ width: 100%;
+ border-radius: 1rem;
+ border: 1px solid rgba(227, 192, 123, 0.28);
+ background: #2e0810;
+ padding: 0.68rem 0.9rem;
+ font-size: 0.8125rem;
+ color: #fbf6ef;
+ outline: none;
+ transition: border-color 160ms, box-shadow 160ms, background 160ms;
+}
+.field-input::placeholder { color: rgba(198, 155, 162, 0.55); }
+.field-input:hover { border-color: rgba(227, 192, 123, 0.45); }
+.field-input:focus {
+ border-color: #e3c07b;
+ box-shadow: 0 0 0 3px rgba(227, 192, 123, 0.22);
+ background: #330a15;
+}
+
+/* Velvet paper card (light M3 surface on dark pages) */
+.paper {
+ background: linear-gradient(160deg, #fdfaf6 0%, #f3eae0 100%);
+ color: #3a0d1a;
+}
+
+/* Gold sheen sweep for primary buttons */
+.btn-sheen {
+ position: relative;
+ overflow: hidden;
+ isolation: isolate;
+}
+.btn-sheen::before {
+ content: "";
+ position: absolute;
+ top: -120%;
+ bottom: -120%;
+ left: -80%;
+ width: 45%;
+ background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+ transform: skewX(-22deg);
+ animation: sheen-sweep 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+ pointer-events: none;
+ z-index: 1;
+}
+@keyframes sheen-sweep {
+ 0%, 62% { left: -80%; }
+ 100% { left: 160%; }
+}
+
+/* Thin champagne scrollbar */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: #26060c; }
+::-webkit-scrollbar-thumb { background: #5f1b30; border-radius: 8px; border: 2px solid #26060c; }
+::-webkit-scrollbar-thumb:hover { background: #a67c37; }
+
+::selection { background: rgba(227, 192, 123, 0.32); color: #fdfaf6; }
+
+/* Film-grain noise overlay — subtle home texture */
+.noise::before {
+ content: "";
+ position: absolute;
+ inset: 0;
+ pointer-events: none;
+ opacity: 0.05;
+ z-index: 5;
+ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}

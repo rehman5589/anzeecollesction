@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#26060C"/>
+  <g fill="none" stroke="#E3C07B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="24" y="8" width="16" height="7" rx="2" fill="#E3C07B" stroke="none"/>
+    <path d="M27 15 L26 22 L19 33 V50 a6 6 0 0 0 6 6 h14 a6 6 0 0 0 6-6 V33 L38 22 L37 15"/>
+  </g>
+  <path d="M24 40 h16 v9 a3 3 0 0 1 -3 3 h-10 a3 3 0 0 1 -3-3 z" fill="#C24B63" opacity="0.9"/>
+  <text x="32" y="47" font-family="Georgia, serif" font-size="9.5" font-weight="700" fill="#FDFAF6" text-anchor="middle">AZ</text>
+</svg>
